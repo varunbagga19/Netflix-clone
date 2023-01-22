@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HeroHeaderUIView: UIView {
     
@@ -34,7 +35,6 @@ class HeroHeaderUIView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "poster")
         return imageView
     }()
     
@@ -77,10 +77,6 @@ class HeroHeaderUIView: UIView {
         NSLayoutConstraint.activate(downloadButtonConstraints)
     }
     
-    
-    
-    
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         heroImageView.frame = bounds
@@ -88,5 +84,13 @@ class HeroHeaderUIView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    public func configure(with model:TitleViewModel){
+        guard let url = URL(string:"https://image.tmdb.org/t/p/w500/\(model.posterURL)") else{
+            return
+        }
+        heroImageView.sd_setImage(with: url)
     }
 }
