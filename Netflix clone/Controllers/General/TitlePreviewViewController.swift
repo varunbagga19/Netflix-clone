@@ -32,7 +32,7 @@ class TitlePreviewViewController: UIViewController {
         return label
         
     }()
-    
+//
     private let downloadButton : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
